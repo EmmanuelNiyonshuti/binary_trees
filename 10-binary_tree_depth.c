@@ -8,10 +8,7 @@
 */
 size_t binary_tree_depth(const binary_tree_t *tree)
 {
-	int p;
-
 	if (!tree || !tree->parent)
 		return (0);
-	p = binary_tree_depth(tree->parent);
-	return (p + 1);
+	return (binary_tree_depth(tree->parent) + 1);
 }
