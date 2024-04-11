@@ -27,16 +27,13 @@ int binary_tree_h(binary_tree_t *tree)
 */
 int binary_tree_f(const binary_tree_t *tree)
 {
-	int r, l;
-
 	if (!tree)
 		return (0);
 
-	l = binary_tree_f(tree->left);
-	r = binary_tree_f(tree->right);
-
-	return ((((r && l) && (tree->left && tree->right))
-			 || (!tree->left || !tree->right)) ? 1 : 0);
+	binary_tree_f(tree->left);
+    binary_tree_f(tree->right);
+	return ((((tree->left && tree->right))
+			 || (!tree->left && !tree->right)) ? 1 : 0);
 }
 /**
 *binary_tree_is_perfect - Checks if a binary tree is perfect.
