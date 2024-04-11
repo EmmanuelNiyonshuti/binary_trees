@@ -10,7 +10,7 @@ int binary_tree_h(binary_tree_t *tree)
     int len_left, len_right;
 
     if (!tree)
-    return -1;
+    return 0;
 
     if (!tree->left && !tree->right)
     return 0;
@@ -29,7 +29,7 @@ int binary_tree_h(binary_tree_t *tree)
 int binary_tree_f(const binary_tree_t *tree)
 {
     if (!tree)
-        return 1; // An empty tree is considered a full binary tree
+        return 0; // An empty tree is considered a full binary tree
 
     if (!tree->left && !tree->right)
         return 1; // Leaf node is considered full
