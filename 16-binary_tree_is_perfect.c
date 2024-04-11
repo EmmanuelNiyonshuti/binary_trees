@@ -1,4 +1,31 @@
 #include "binary_trees.h"
+
+int binary_tree_h(binary_tree_t *tree)
+{
+    int len_left, len_right;
+    
+    if (!tree)
+	return (0);
+
+    if (!tree->left && !tree->right)
+        return (0);
+
+    len_left = binary_tree_h(tree->left);
+	len_right = binary_tree_h(tree->right);
+    return (len_left > len_right ? len_left + 1 : len_right + 1);
+}
+int binary_tree_f(const binary_tree_t *tree)
+{
+	int r, l;
+
+	if (!tree)
+		return (0);
+	l = binary_tree_f(tree->left);
+	r = binary_tree_f(tree->right);
+
+	return ((((r && l) && (tree->left && tree->right))
+			 || (!tree->left && !tree->right)) ? 1 : 0);
+}
 /**
 *binary_tree_is_perfect - Checks if a binary tree is perfect.
 *@tree: The tree.
@@ -13,10 +40,10 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 
     if (!tree)
         return (0);
-    t_l = binary_tree_is_full(tree->left);
-    t_r = binary_tree_is_full(tree->right);
-    h_r = binary_tree_height(tree->left);
-    h_l = binary_tree_height(tree->right);
+    t_l = binary_tree_f(tree->left);
+    t_r = binary_tree_f(tree->right);
+    h_r = binary_tree_h(tree->left);
+    h_l = binary_tree_h(tree->right);
     if (((t_l && t_r) == 1) && (h_r == h_l))
         return (1);
     return (0);
