@@ -12,11 +12,11 @@ int binary_tree_h(binary_tree_t *tree)
 	if (!tree)
 		return (0);
 
-	if (!tree->left && !tree->right)
-		return (0);
-
 	len_left = binary_tree_h(tree->left);
 	len_right = binary_tree_h(tree->right);
+	if (!tree->left && !tree->right)
+		return (1);
+
 	return (len_left > len_right ? len_left + 1 : len_right + 1);
 }
 /**
