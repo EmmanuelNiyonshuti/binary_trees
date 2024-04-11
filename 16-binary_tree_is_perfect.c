@@ -29,11 +29,10 @@ int binary_tree_f(const binary_tree_t *tree)
 {
 	int r, l;
 
-    if (tree->left && tree->right)
-    return (1);
 	if (!tree)
 		return (0);
-
+    if (tree->left && tree->right)
+    return (1);
 	l = binary_tree_f(tree->left);
 	r = binary_tree_f(tree->right);
 
