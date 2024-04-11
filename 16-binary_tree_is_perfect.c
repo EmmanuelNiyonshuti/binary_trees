@@ -20,20 +20,23 @@ int binary_tree_h(binary_tree_t *tree)
 	return (len_left > len_right ? len_left + 1 : len_right + 1);
 }
 /**
-*binary_tree_f - checking if binary tree is full.
+*binary_tree_f - checks if the internal nodes have 2 subtrees.
 *@tree: Pointer to the tree to go through.
 *
 *Return: 1 on success 0 on failure.
 */
 int binary_tree_f(const binary_tree_t *tree)
 {
+	int r, l;
+
 	if (!tree)
 		return (0);
 
-	binary_tree_f(tree->left);
-    binary_tree_f(tree->right);
-	return ((((tree->left && tree->right)) || (!tree->left || !tree->right))
-                        || (!tree->left && !tree->right) ? 1 : 0);
+	l = binary_tree_f(tree->left);
+	r = binary_tree_f(tree->right);
+
+	return ((((r && l) && (tree->left && tree->right))
+			 || (!tree->left && !tree->right)) ? 1 : 0);
 }
 /**
 *binary_tree_is_perfect - Checks if a binary tree is perfect.
