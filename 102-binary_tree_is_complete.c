@@ -28,8 +28,8 @@ int binary_tree_completness(const binary_tree_t *tree, int size, int i)
 		return (1);
 	if (i >= size)
 		return (0);
-	return (binary_tree_compl(tree->left, size, 2 * i + 1) &&
-			binary_tree_compl(tree->right, size, 2 * i + 2));
+	return (binary_tree_completness(tree->left, size, 2 * i + 1) &&
+			binary_tree_completness(tree->right, size, 2 * i + 2));
 }
 /**
  * binary_tree_is_complete - Checks if a binary tree is complete.
@@ -46,5 +46,5 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 		return (0);
 	size = size_binary_tree(tree);
 
-	return (binary_tree_compl(tree, size, 0));
+	return (binary_tree_completness(tree, size, 0));
 }
